@@ -21,7 +21,7 @@ public class InsertDataForTesting {
 //		perguntaDAO.adcionar(pergunta);
 
 //		System.out.println(perguntaDAO.listar());
-		perguntaDAO.listar("", "facil").forEach(System.out::println);
+//		perguntaDAO.listar("", "facil").forEach(System.out::println);
 
 		System.exit(0);
 
