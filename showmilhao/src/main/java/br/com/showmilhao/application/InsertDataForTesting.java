@@ -27,11 +27,8 @@ public class InsertDataForTesting {
 //		pergunta.setAlternativa3("Ana");
 //		pergunta.setResposta("Pedro A. ");
 //		pergunta.setId(1);		
-//		
 //		perguntaDAO.atualizar(pergunta);
-
 //		exluir o objeto
-
 //		perguntaDAO.remover(3);	
 
 		System.exit(0);
