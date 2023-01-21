@@ -15,8 +15,7 @@ public class InsertDataForTesting {
 //		pergunta.setAlternativa3("Ana");
 //		pergunta.setResposta("Pedro A. ");		
 //		
-//		perguntaDAO.adcionar(pergunta);
-//		
+//		perguntaDAO.adcionar(pergunta);//		
 
 //		atualizar objeto
 
