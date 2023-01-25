@@ -130,7 +130,10 @@ public class PerguntaDAO {
 	
 	public List<Pergunta> listar(String idsPerguntasFeitas, String nivel){
 		String sql = "SELECT * FROM perguntas WHERE nivel = ? ORDER BY RANDOM() LIMITE 1";
-		return buscar("SELECT * FROM perguntas WHERE nivel = ?", nivel);
+		if(!idsPerguntasFeitas.isEmpty()) {
+			sql ="SELECT * FROM perguntas WHERE nivel = ? AND perguntas.id NOT IN" + idsPerguntasFeitas + "ORDER BY RANDOM() LIMIT 1";
+		}
+		return buscar(sql, nivel);
 	}
 
 }
