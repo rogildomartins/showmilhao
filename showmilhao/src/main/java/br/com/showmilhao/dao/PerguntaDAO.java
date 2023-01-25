@@ -2,7 +2,12 @@ package br.com.showmilhao.dao;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Objects;
 
+import javax.imageio.plugins.jpeg.JPEGHuffmanTable;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
@@ -85,4 +90,107 @@ public class PerguntaDAO {
 		}
 	}
 
+	private List<Pergunta> buscar(String sql, String nivel) {
+		List<Pergunta> perguntas = new ArrayList<>();
+		try {
+			try (PreparedStatement stmt = connection.prepareStatement(sql)) {
+				if (Objects.nonNull(nivel))
+					stmt.setString(1, nivel);
+				try (ResultSet rs = stmt.executeQuery()) {
+					while (rs.next()) {
+						Pergunta pergunta = new Pergunta();
+						pergunta.setId(rs.getInt("id"));
+						pergunta.setNivel(rs.getString("nivel"));
+						pergunta.setEnunciado(rs.getString("enunciado"));
+						pergunta.setAlternativa1(rs.getString("alternativa1"));
+						pergunta.setAlternativa2(rs.getString("alternativa2"));
+						pergunta.setAlternativa3(rs.getString("alternativa3"));
+						pergunta.setResposta(rs.getString("resposta"));
+						perguntas.add(pergunta);
+
+					}
+				}
+
+			}
+		} catch (Exception e) {
+			// TODO: handle exception
+			LogUtil.getLogger(PerguntaDAO.class).error(e.getCause().toString());
+		}
+
+		return perguntas;
+	}
+	
+	public List<Pergunta> listar(){
+		return buscar("SELECT * FROM perguntas", null);
+	}
+	
+	public List<Pergunta> listar(String nivel){
+		return buscar("SELECT * FROM perguntas WHERE nivel = ?", nivel);
+	}
+	
+	public List<Pergunta> listar(String idsPerguntasFeitas, String nivel){
+		String sql = "SELECT * FROM perguntas WHERE nivel = ? ORDER BY RANDOM() LIMITE 1";
+		return buscar("SELECT * FROM perguntas WHERE nivel = ?", nivel);
+	}
+
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
